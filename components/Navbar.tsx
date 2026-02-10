@@ -6,9 +6,10 @@ interface NavbarProps {
   onNavigateToOffer?: () => void;
   onNavigateToResources?: () => void;
   onNavigateToHome?: () => void;
+  onNavigateToInvestor?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onNavigateToOffer, onNavigateToResources, onNavigateToHome }) => {
+const Navbar: React.FC<NavbarProps> = ({ onNavigateToOffer, onNavigateToResources, onNavigateToHome, onNavigateToInvestor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -57,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateToOffer, onNavigateToResource
   const navLinks = [
     { name: 'How It Works', href: '#process' },
     { name: 'Resources', action: onNavigateToResources },
-    { name: 'FAQ', href: '#faq' }, // Keep this, even if section doesn't exist yet, standard placeholder
+    { name: 'Investors', action: onNavigateToInvestor },
   ];
 
   return (

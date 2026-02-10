@@ -1,7 +1,11 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigateToInvestor?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigateToInvestor }) => {
   return (
     <footer className="bg-brand-evergreen text-white pt-20 pb-10 rounded-t-3xl md:rounded-t-[3rem] mt-12">
       <div className="container mx-auto px-4">
@@ -46,9 +50,11 @@ const Footer: React.FC = () => {
             <h4 className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-brand-gold mb-8">Company</h4>
             <ul className="space-y-4 font-sans text-sm text-white/80">
               <li><a href="#" className="hover:text-white transition-colors hover:underline decoration-brand-gold underline-offset-4">Our Story</a></li>
-              <li><a href="#" className="hover:text-white transition-colors hover:underline decoration-brand-gold underline-offset-4">How We Help</a></li>
               <li><a href="#" className="hover:text-white transition-colors hover:underline decoration-brand-gold underline-offset-4">Recent Projects</a></li>
               <li><a href="#" className="hover:text-white transition-colors hover:underline decoration-brand-gold underline-offset-4">Contact Us</a></li>
+              {onNavigateToInvestor && (
+                <li><button onClick={onNavigateToInvestor} className="hover:text-white transition-colors hover:underline decoration-brand-gold underline-offset-4">Investor Access</button></li>
+              )}
             </ul>
           </div>
 

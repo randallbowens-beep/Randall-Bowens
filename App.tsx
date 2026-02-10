@@ -7,9 +7,10 @@ import IntakeForm from './components/IntakeForm';
 import Footer from './components/Footer';
 import OfferPage from './components/OfferPage';
 import ResourcesPage from './components/ResourcesPage';
+import InvestorPage from './components/InvestorPage';
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'offer' | 'resources'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'offer' | 'resources' | 'investor'>('home');
 
   const navigateToOffer = () => {
     window.scrollTo(0, 0);
@@ -26,8 +27,17 @@ const App: React.FC = () => {
     setCurrentPage('resources');
   };
 
+  const navigateToInvestor = () => {
+    window.scrollTo(0, 0);
+    setCurrentPage('investor');
+  };
+
   if (currentPage === 'offer') {
     return <OfferPage onBack={navigateToHome} />;
+  }
+
+  if (currentPage === 'investor') {
+    return <InvestorPage onBack={navigateToHome} />;
   }
 
   if (currentPage === 'resources') {
@@ -37,11 +47,12 @@ const App: React.FC = () => {
                 onNavigateToOffer={navigateToOffer} 
                 onNavigateToHome={navigateToHome}
                 onNavigateToResources={navigateToResources}
+                onNavigateToInvestor={navigateToInvestor}
             />
             <main className="flex-grow">
                 <ResourcesPage onBack={navigateToHome} onGetOffer={navigateToOffer} />
             </main>
-            <Footer />
+            <Footer onNavigateToInvestor={navigateToInvestor} />
         </div>
     );
   }
@@ -52,6 +63,7 @@ const App: React.FC = () => {
         onNavigateToOffer={navigateToOffer} 
         onNavigateToHome={navigateToHome}
         onNavigateToResources={navigateToResources}
+        onNavigateToInvestor={navigateToInvestor}
       />
       <main className="flex-grow">
         <Hero onGetOfferClick={navigateToOffer} />
@@ -62,7 +74,7 @@ const App: React.FC = () => {
         />
         <IntakeForm />
       </main>
-      <Footer />
+      <Footer onNavigateToInvestor={navigateToInvestor} />
     </div>
   );
 };
